@@ -1,5 +1,5 @@
 import React from 'react';
-// import './Header.css';
+import './styles/Header.css';
 
 function Header() {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -12,7 +12,7 @@ function Header() {
     <header>
       {/* <Navbar full screen */}
       <nav id="desktop-nav">
-        <div className="logo">Gkmeena</div>
+        <div className="text-logo">Gkmeena</div>
         <div>
           <ul className="nav-links">
             <li><a href="#about">About</a></li>
@@ -25,7 +25,7 @@ function Header() {
 
       {/* Nav Bar half screen */}
       <nav id="hamburger-nav">
-        <div className="logo">Gkmeena</div>
+        <div className="text-logo">Gkmeena</div>
         <div className="hamburger-menu">
 
           {/* Java Script for Hamburger Icon toggle */}

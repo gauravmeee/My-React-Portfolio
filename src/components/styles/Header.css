@@ -1,6 +1,6 @@
 /* DESKTOP NAV */
 
-nav,
+/* nav,
 .nav-links {
   display: flex;
 }
@@ -30,17 +30,17 @@ a:hover {
   text-decoration-color: rgb(181, 181, 181);
 }
 
-.logo {
+.text-logo {
   font-size: 2rem;
 }
 
-.logo:hover {
+.text-logo:hover {
   cursor: default;
-}
+} */
 
 /* HAMBURGER MENU */
 
-#hamburger-nav {
+/* #hamburger-nav {
   display: none;
 }
 
@@ -116,4 +116,24 @@ a:hover {
 
 .hamburger-icon span:first-child {
   transform: none;
+} */
+
+
+/* For GKmeena Logo Remove change .logo styles */
+
+.text-logo:hover {
+  cursor: default;
+} 
+
+.ruthie-regular {
+  font-family: "Ruthie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.text-logo {
+  font-size: 2rem;
+  font-family: "Playwrite CL", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
