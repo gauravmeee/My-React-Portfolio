@@ -5,19 +5,19 @@ function Projects() {
 
   const projects = [
     {
-      title: 'AdBlocker',
+      title: 'AdBlocker Chrome Extension',
       image: './assets/Project-AdBlocker.png',
       githubLink: '',
       liveDemoLink: '',
     },
     {
-      title: 'Character Counter',
+      title: 'Real Time Character Counter',
       image: './assets/Project-CharacterCounter.png',
       githubLink: 'https://github.com/gauravmeee/Teamraftaar',
       liveDemoLink: 'https://teamraftaar.vercel.app/',
     },
     {
-      title: 'TR Website',
+      title: 'Team Raftaar Website',
       image: './assets/Project-TeamRaftaar.png',
       githubLink: '',
       liveDemoLink: '',
