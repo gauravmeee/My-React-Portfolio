@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.my-react-portfolio.code-workspace
 
 # testing
 /coverage
