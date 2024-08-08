@@ -17,7 +17,7 @@ function Projects() {
       liveDemoLink: 'https://teamraftaar.vercel.app/',
     },
     {
-      title: 'Team Raftaar Website',
+      title: 'TR Website',
       image: './assets/Project-TeamRaftaar.png',
       githubLink: '',
       liveDemoLink: '',
