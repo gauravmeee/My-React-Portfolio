@@ -15,7 +15,7 @@ function Profile() {
           
           {/* Download CV*/}
           <button
-            className="btn btn-color-2" onClick={() => window.open('./assets/resume.pdf')} >
+            className="btn btn-color-2" onClick={() => window.open('https://drive.google.com/file/d/1o74OTbcjWq62jN6HZe21Y4ZLVzUAy8_m/view?usp=drive_link', `_blank`)} >
             Download CV
           </button>
 
@@ -31,13 +31,15 @@ function Profile() {
             src="./assets/linkedin.png"
             alt="My LinkedIn profile"
             className="icon"
-            onClick={() => window.location.href='https://www.linkedin.com/in/gauravmeee/'}
+            onClick={() => window.open('https://www.linkedin.com/in/gauravmeee/', `_blank`)}
+            // onClick={() => window.location.href='https://www.linkedin.com/in/gauravmeee/'}
           />
           <img
             src="./assets/github.png"
             alt="My Github profile"
             className="icon"
-            onClick={() => window.location.href='https://github.com/gauravmeee'}
+            onClick={() => window.open('https://github.com/gauravmeee', `_blank`)}
+            // onClick={() => window.location.href='https://github.com/gauravmeee'}
           />
         </div>
       </div>

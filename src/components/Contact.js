@@ -21,7 +21,7 @@ function Contact() {
             alt="LinkedIn icon"
             className="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com/in/gauravmeee/">LinkedIn</a></p>
+          <p><a href="https://www.linkedin.com/in/gauravmeee/" target="_blank">LinkedIn</a></p>
         </div>
       </div>
     </section>
