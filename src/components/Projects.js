@@ -5,21 +5,27 @@ function Projects() {
 
   const projects = [
     {
-      title: 'AdBlocker Chrome Extension',
-      image: './assets/Project-AdBlocker.png',
-      githubLink: '',
-      liveDemoLink: '',
+      title: 'Document OCR Text Picker',
+      image: './assets/Project-OCR.png',
+      githubLink: 'https://github.com/gauravmeee/Bill-Invoice-OCR-App',
+      liveDemoLink: 'https://pytesseract-ocr.netlify.app/',
     },
     {
-      title: 'Real Time Character Counter',
+      title: 'Realtime Character Count',
       image: './assets/Project-CharacterCounter.png',
-      githubLink: 'https://github.com/gauravmeee/Teamraftaar',
-      liveDemoLink: 'https://teamraftaar.vercel.app/',
+      githubLink: 'https://github.com/gauravmeee/Grammar-Count',
+      liveDemoLink: 'https://grammar-count.netlify.app/',
     },
     {
       title: 'Team Raftaar Website',
       image: './assets/Project-TeamRaftaar.png',
-      githubLink: '',
+      githubLink: 'https://github.com/gauravmeee/Teamraftaar',
+      liveDemoLink: 'https://teamraftaar.vercel.app/',
+    },
+    {
+      title: 'AdBlocker Extension',
+      image: './assets/Project-AdBlocker.png',
+      githubLink: 'https://github.com/gauravmeee',
       liveDemoLink: '',
     },
   ];
