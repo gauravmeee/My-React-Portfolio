@@ -4,11 +4,19 @@ import React from 'react';
 function Projects() {
 
   const projects = [
+
     {
-      title: 'Document OCR Text Picker',
+      title: 'React Markdown Editor',
+      image: './assets/Markdown-Edit.png',
+      githubLink: 'https://github.com/gauravmeee/React-Markdown-Editor',
+      liveDemoLink: 'https://markdown-editor-livepreview.netlify.app/',
+    },
+
+    {
+      title: 'Image to Text Extract',
       image: './assets/Project-OCR.png',
-      githubLink: 'https://github.com/gauravmeee/Bill-Invoice-OCR-App',
-      liveDemoLink: 'https://pytesseract-ocr.netlify.app/',
+      githubLink: 'https://github.com/gauravmeee/flask-tesseract-ocr',
+      liveDemoLink: 'https://image-text-extract.onrender.com/',
     },
     {
       title: 'Realtime Character Count',
