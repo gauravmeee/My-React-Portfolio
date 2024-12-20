@@ -1,6 +1,13 @@
 /* GENERAL */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+CL:wght@100..400&family=Ruthie&display=swap");
+
+/*-------------------*/
+
+button {
+  all: unset; /* Removes all Bootstrap default button styles */
+}
 
 * {
   margin: 0;
@@ -17,13 +24,6 @@ html {
 
 p {
   color: rgb(85, 85, 85);
-}
-
-/* TRANSITION */
-
-a,
-.btn {
-  transition: all 300ms ease;
 }
 
 /* DESKTOP NAV */
@@ -146,8 +146,33 @@ a:hover {
   transform: none;
 }
 
-/* SECTIONS */
+/* For GKmeena Logo Remove change .logo styles */
 
+.text-logo:hover {
+  cursor: default;
+} 
+
+.ruthie-regular {
+  font-family: "Ruthie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text-logo {
+  font-size: 2rem;
+  font-family: "Playwrite CL", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* TRANSITION */
+a,
+.my-btn {
+  transition: all 300ms ease;
+}
+
+/* SECTIONS */
 section {
   padding-top: 4vh;
   height: 96vh;
@@ -161,7 +186,6 @@ section {
 }
 
 /* PROFILE SECTION */
-
 #profile {
   display: flex;
   justify-content: center;
@@ -197,6 +221,7 @@ section {
 .title {
   font-size: 3rem;
   text-align: center;
+  font-weight: bold;
 }
 
 #socials-container {
@@ -207,21 +232,19 @@ section {
 }
 
 /* ICONS */
-
 .icon {
   cursor: pointer;
   height: 2rem;
 }
 
 /* BUTTONS */
-
 .btn-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
-.btn {
+.my-btn {
   font-weight: 600;
   transition: all 300ms ease;
   padding: 1rem;
@@ -262,7 +285,6 @@ section {
 }
 
 /* ABOUT SECTION */
-
 #about {
   position: relative;
 }
@@ -315,7 +337,6 @@ section {
 }
 
 /* SKILLS SECTION */
-
 #skills {
   position: relative;
 }
@@ -354,7 +375,6 @@ article .icon {
 }
 
 /* PROJECTS SECTION */
-
 #projects {
   position: relative;
 }
@@ -381,11 +401,11 @@ article .icon {
 }
 
 /* CONTACT */
-
 #contact {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 20vh ;
   height: 70vh;
 }
 
@@ -421,10 +441,9 @@ article .icon {
 }
 
 /* FOOTER SECTION */
-
 footer {
-  /* height: 0vh; */
   margin: 0 1rem;
+  padding-bottom: 15vh;
 }
 
 footer p {
@@ -432,3 +451,6 @@ footer p {
   padding: 0;  /* Ensure no extra padding is applied */
   margin: 0;   /* Ensure no extra margin is applied */
 }
+
+/*-----------------*/
+

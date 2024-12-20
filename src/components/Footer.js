@@ -1,10 +1,9 @@
 import React from 'react';
-// import './Footer.css';
 
 function Footer() {
   return (
     <footer>
-      <p>&#169; 2023 Gkmeena.</p>
+      <p>&#169; 2024 Gkmeena.</p>
     </footer>
   );
 }

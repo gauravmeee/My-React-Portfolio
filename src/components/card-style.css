@@ -1,0 +1,82 @@
+/* Custom Styles for the Swiper container */
+.container-fluid {
+    margin: 0 auto;  /* Center it on the screen */
+    padding: 0 20px;  /* Add horizontal padding */
+}
+
+/* Swiper Wrapper - Control the area containing the slides */
+.cards-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* This makes sure all cards stretch equally */
+    gap: 20px; /* Space between slides */
+    padding: 40px 0; /* Optional: Add padding on top and bottom */
+    flex: 0 0 auto;  /* Prevent swiper slides from shrinking */
+}
+
+
+/* Wrapper for swiper to ensure uniform height */
+.swiper-container {
+    width:100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; /* Ensure the swiper container is centered */
+}
+
+/* Custom Style for Swiper Slide */
+.swiper-slide {
+    height: 100%;
+    width: auto; /* Allow the slide to take up its natural width */
+    max-width: 250px; /* Set a maximum width for each card */
+    margin: 30px 10px;  /* Adds space between slides */
+    box-sizing: border-box;  /* Make sure padding and border are included in the width */
+    flex: 0 0 auto;  /* Prevent swiper slides from shrinking */
+}
+
+/* Styling for Card Image */
+.card-img-top {
+    margin: 10px auto; /* Space around the image */
+    width: 90%; /* Adjust the image width */
+    border-radius: 8px; /* Optional: rounded image corners */
+  
+    height: 200px;  /* Fixed height for consistency */
+    object-fit: cover;  /* Maintain aspect ratio while covering the area */
+}
+
+/* Ensures the cards stretch to the same height */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1; /* Allow the body content to grow to fill available space */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 450px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 30px; /* Add small gap between buttons */
+    margin-top: auto; /* Push buttons to the bottom of the card */
+}
+
+/* Make the buttons smaller and aligned properly */
+.btn {
+    font-size: 12px;  /* Smaller button size */
+    padding: 6px 12px;
+}
+
+/* Optional: Ensures the content remains spaced */
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 20px;
+}
+

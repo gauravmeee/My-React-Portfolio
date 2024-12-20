@@ -1,5 +1,4 @@
 import React from 'react';
-// import './Skill.css';
 
 const Icon = ({ src, alt, className }) => (
   <img src={src} alt={alt} className={className} />
@@ -38,7 +37,7 @@ const Skills = () => {
     { title: 'HTML', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg', iconAlt: 'HTML icon' },
     { title: 'CSS', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg', iconAlt: 'CSS icon' },
     // { title: 'Angular', iconSrc: 'https://angular.io/assets/images/logos/angular/angular.svg', iconAlt: 'Angular icon' },
-    { title: 'Flask', iconSrc: 'https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg', iconAlt: 'Flask icon' },
+    { title: 'Flask', iconSrc: 'https://www.vectorlogo.zone/logos/palletsprojects_flask/palletsprojects_flask-icon~v2.svg', iconAlt: 'Flask icon' },
     { title: 'MySql', iconSrc: 'https://www.svgrepo.com/show/354099/mysql.svg', iconAlt: 'MySql icon' },
   ];
 

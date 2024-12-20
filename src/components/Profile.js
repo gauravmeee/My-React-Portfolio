@@ -1,5 +1,5 @@
 import React from 'react';
-// import './Profile.css';
+
 
 function Profile() {
     return (
@@ -15,13 +15,13 @@ function Profile() {
           
           {/* Download CV*/}
           <button
-            className="btn btn-color-2" onClick={() => window.open('https://drive.google.com/file/d/1o74OTbcjWq62jN6HZe21Y4ZLVzUAy8_m/view?usp=drive_link', `_blank`)} >
+            className="my-btn btn-color-2" onClick={() => window.open('https://drive.google.com/file/d/1o74OTbcjWq62jN6HZe21Y4ZLVzUAy8_m/view?usp=drive_link', `_blank`)} >
             Download CV
           </button>
 
           {/* Contact Info*/}
           <button 
-            className="btn btn-color-1" onClick={() => window.location.href='./#contact'}>
+            className="my-btn btn-color-1" onClick={() => window.location.href='./#contact'}>
             Contact Info
           </button>
 
@@ -43,6 +43,7 @@ function Profile() {
           />
         </div>
       </div>
+      
     </section>
     );
 }
