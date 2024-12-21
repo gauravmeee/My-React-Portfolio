@@ -11,7 +11,9 @@ import pro5 from './assets/Project-TeamRaftaar.png';
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import './card-style.css'
+import './card-style.css';
+// import './card-mediaqueries.css';
+
 
 const Icon = ({ src, alt, className }) => (
   <img src={src} alt={alt} className={className} />
@@ -68,27 +70,26 @@ const Projects = () => {
       modules={[EffectCoverflow, Pagination]} // Register modules
       className="container-fluid"
       breakpoints={{
-        // When the screen width is 1200px or more, show 4 cards
+        // When the screen width is 1200px or more, show 3 cards
         1200: {
-          slidesPerView: 4,
-        },
-        // When the screen width is 768px or more, show 3 cards
-        768: {
           slidesPerView: 3,
         },
-        // When the screen width is less than 768px, show 2 cards
-        480: {
+        // When the screen width is 768px or more, show 2 cards
+        768: {
           slidesPerView: 2,
+        },
+        // When the screen width is less than 768px, show 1 cards
+        480: {
+          slidesPerView: 1,
         },
       }}
     >
-      <div className="cards-wrapper">
+
         {projects.map((project, index) => (
           <SwiperSlide key={index}>
             <Card project={project} />
           </SwiperSlide>
         ))}
-      </div>
     </Swiper>
     <a href="#contact">
         <Icon src="./assets/arrow.png" alt="Arrow icon" className="icon arrow" />

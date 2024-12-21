@@ -1,0 +1,53 @@
+/* Media Queries */
+
+/* For small screens, reduce the number of cards per view */
+@media (max-width: 767px) {
+    .card{
+        width: 100%;
+        max-width: 350px;  /* Allow slides to take full width */
+    }
+    .cards-wrapper {
+        flex-direction: column;  /* Stack the cards vertically */
+        padding: 20px 0;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        max-width: 100%;  /* Allow slides to take full width */
+        margin: 20px 0;  /* Space between slides */
+    }
+
+    .container-fluid {
+        padding: 0 10px;  /* Reduced padding */
+    }
+
+    .button-group {
+        gap: 15px;  /* Reduce gap between buttons */
+    }
+
+    .btn {
+        font-size: 10px;  /* Smaller buttons for small screens */
+    }
+}
+
+/* For medium screens, show 3 cards per view */
+@media (min-width: 768px) and (max-width: 991px) {
+    .swiper-slide {
+        max-width: 300px;  /* Set max width for cards */
+    }
+
+    .button-group {
+        gap: 20px;  /* Adjust button spacing */
+    }
+}
+
+/* For large screens, show 4 cards per view */
+@media (min-width: 992px) {
+    .swiper-slide {
+        max-width: 250px;  /* Default card size */
+    }
+
+    .button-group {
+        gap: 30px;  /* Larger gap for buttons */
+    }
+}

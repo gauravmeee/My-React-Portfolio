@@ -1,8 +1,4 @@
-/* Custom Styles for the Swiper container */
-.container-fluid {
-    margin: 0 auto;  /* Center it on the screen */
-    padding: 0 20px;  /* Add horizontal padding */
-}
+
 
 /* Swiper Wrapper - Control the area containing the slides */
 .cards-wrapper {
@@ -10,26 +6,7 @@
     justify-content: space-between;
     align-items: stretch; /* This makes sure all cards stretch equally */
     gap: 20px; /* Space between slides */
-    padding: 40px 0; /* Optional: Add padding on top and bottom */
-    flex: 0 0 auto;  /* Prevent swiper slides from shrinking */
-}
-
-
-/* Wrapper for swiper to ensure uniform height */
-.swiper-container {
-    width:100%;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto; /* Ensure the swiper container is centered */
-}
-
-/* Custom Style for Swiper Slide */
-.swiper-slide {
-    height: 100%;
-    width: auto; /* Allow the slide to take up its natural width */
-    max-width: 250px; /* Set a maximum width for each card */
-    margin: 30px 10px;  /* Adds space between slides */
-    box-sizing: border-box;  /* Make sure padding and border are included in the width */
+    padding: 0 0; /* Optional: Add padding on top and bottom */
     flex: 0 0 auto;  /* Prevent swiper slides from shrinking */
 }
 
@@ -61,14 +38,14 @@
 .button-group {
     display: flex;
     justify-content: center; /* Center buttons horizontally */
-    gap: 30px; /* Add small gap between buttons */
+    gap: 20px; /* Add small gap between buttons */
     margin-top: auto; /* Push buttons to the bottom of the card */
 }
 
 /* Make the buttons smaller and aligned properly */
 .btn {
-    font-size: 12px;  /* Smaller button size */
-    padding: 6px 12px;
+    /* smaller buttone size*/
+    font-size: 12px;
 }
 
 /* Optional: Ensures the content remains spaced */
@@ -80,3 +57,26 @@
     margin-bottom: 20px;
 }
 
+
+/* Slides */
+
+
+/* .container-fluid {
+    width: 600px;
+} */
+
+
+/* .swiper-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+} */
+
+.swiper-slide {
+    /* width: auto; */
+    max-width: 250px;
+    min-width: 200px;
+    margin: 30px 10px;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+}
