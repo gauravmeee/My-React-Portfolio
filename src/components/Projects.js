@@ -6,6 +6,9 @@ import pro2 from './assets/Project-AdBlocker.png';
 import pro3 from './assets/Project-CharacterCounter.png';
 import pro4 from './assets/Project-OCR.png';
 import pro5 from './assets/Project-TeamRaftaar.png';
+import pro6 from './assets/Project-GkmeenaApps.png';
+import pro7 from './assets/Project-GkmeenaNotes.png';
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -20,11 +23,13 @@ const Icon = ({ src, alt, className }) => (
 );
 
 const projects = [
-  { img: pro1, title: "Markdown Editor", description: "A simple app for creating and saving notes in markdown format", sourceCode: "https://github.com/gauravmeee/React-Markdown-Editor", liveProject: "https://markdown-editor-livepreview.netlify.app/" },
-  { img: pro2, title: "Adblocker Extension", description: "A minimalist Chrome extension to block ads", sourceCode: "https://github.com/gauravmeee", liveProject: "" },
-  { img: pro3, title: "Character Counter", description: "A realtime text editor to write, edit, and count", sourceCode: "https://github.com/gauravmeee/Grammar-Count", liveProject: "https://grammar-count.netlify.app/" },
+  { img: pro7, title: "GKmeena Notes", description: "A very minimilistic Next.js Apps to Collect, Present and Share your Markdown notes effectively", sourceCode: "https://github.com/gauravmeee/My_md_Notes", liveProject: "https://gkmeena-markdown-notes.vercel.app/" },
+  { img: pro1, title: "Markdown Editor", description: "A simple React app for creating and saving notes in markdown format", sourceCode: "https://github.com/gauravmeee/React-Markdown-Editor", liveProject: "https://markdown-editor-livepreview.netlify.app/" },
+  { img: pro6, title: "GKmeena Apps", description: "React-vite App to Dynamically Store and Present All your and Others Useful Apps", sourceCode: "https://github.com/gauravmeee/gkmeena-apps", liveProject: "https://gkmeena-apps.vercel.app/" },
   { img: pro4, title: "Text Extraction", description: "A Flask-based backend to extract text from uploaded files", sourceCode: "https://github.com/gauravmeee/flask-tesseract-ocr", liveProject: "https://image-text-extract.onrender.com/" },
   { img: pro5, title: "Frontend Team Raftaar", description: "An eye-catching frontend website for Team Raftaar DTU", sourceCode: "https://github.com/gauravmeee/Teamraftaar", liveProject: "https://teamraftaar.vercel.app/" },
+  { img: pro2, title: "Adblocker Extension", description: "A minimalist Chrome extension to block the irritating ads", sourceCode: "https://github.com/gauravmeee", liveProject: "" },
+  { img: pro3, title: "Character Counter", description: "A realtime text editor using html, css and js to write, edit, and count", sourceCode: "https://github.com/gauravmeee/Grammar-Count", liveProject: "https://grammar-count.netlify.app/" },
 ];
 
 const Card = ({ project }) => {
@@ -45,7 +50,7 @@ const Card = ({ project }) => {
   );
 };
 
-var middleSlide = Math.floor(projects.length / 2);
+var middleSlide = 3;
 const Projects = () => {
   return (
     <section id="projects">
@@ -56,7 +61,7 @@ const Projects = () => {
       effect="coverflow"
       grabCursor={true}
       centeredSlides={true}
-      slidesPerView={3} // Default value (3 cards per view)
+      slidesPerView={1} // Default value (3 cards per view)
       coverflowEffect={{
         rotate: 0,
         stretch: -10,
