@@ -9,37 +9,41 @@ function Header() {
 
   return (
     <header>
-      {/* <Navbar full screen */}
-      <nav id="desktop-nav">
-        <div className="text-logo">Gkmeena</div>
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex justify-around items-center h-17vh">
+        <div className="text-2xl font-playwrite font-semibold">Gkmeena</div>
         <div>
-          <ul className="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <ul className="flex gap-8 list-none text-xl">
+            <li><a href="#about" className="text-black no-underline hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent">About</a></li>
+            <li><a href="#skills" className="text-black no-underline hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent">Skills</a></li>
+            <li><a href="#projects" className="text-black no-underline hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent">Projects</a></li>
+            <li><a href="#contact" className="text-black no-underline hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent">Contact</a></li>
           </ul>
         </div>
       </nav>
 
-      {/* Nav Bar half screen */}
-      <nav id="hamburger-nav">
-        <div className="text-logo">Gkmeena</div>
-        <div className="hamburger-menu">
+      {/* Mobile Navigation */}
+      <nav className="md:hidden fixed top-0 left-0 right-0 bg-white z-50">
+        <div className="flex justify-around items-center px-8 py-4 w-full">
+          <div className="text-2xl font-playwrite font-semibold">Gkmeena</div>
+          <div className="relative">
+            <div 
+              className="flex flex-col justify-between h-6 w-7 cursor-pointer"
+              onClick={handleMenuToggle}
+            >
+              <span className={`w-full h-0.5 bg-black transition-all duration-300 ease-in-out ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
+              <span className={`w-full h-0.5 bg-black transition-all duration-300 ease-in-out ${menuOpen ? 'opacity-0 translate-x-4' : ''}`}></span>
+              <span className={`w-full h-0.5 bg-black transition-all duration-300 ease-in-out ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`}></span>
+            </div>
 
-          {/* Java Script for Hamburger Icon toggle */}
-          <div className="hamburger-icon" onClick={handleMenuToggle}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          {/* Navbar Links show through Hamburgerr */}
-          <div className={`menu-links ${menuOpen ? 'open' : ''}`}>
-            <li><a href="#about" onClick={handleMenuToggle}>About</a></li>
-            <li><a href="#skills" onClick={handleMenuToggle}>Skills</a></li>
-            <li><a href="#projects" onClick={handleMenuToggle}>Projects</a></li>
-            <li><a href="#contact" onClick={handleMenuToggle}>Contact</a></li>
+            <div className={`absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg transition-all duration-300 ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+              <ul className="py-2">
+                <li><a href="#about" className="block px-4 py-2 text-xl text-black hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent" onClick={handleMenuToggle}>About</a></li>
+                <li><a href="#skills" className="block px-4 py-2 text-xl text-black hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent" onClick={handleMenuToggle}>Skills</a></li>
+                <li><a href="#projects" className="block px-4 py-2 text-xl text-black hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent" onClick={handleMenuToggle}>Projects</a></li>
+                <li><a href="#contact" className="block px-4 py-2 text-xl text-black hover:text-gray-600 hover:underline hover:underline-offset-4 hover:decoration-accent" onClick={handleMenuToggle}>Contact</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
