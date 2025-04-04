@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function About() {
   return (
@@ -15,7 +15,6 @@ function About() {
         </div>
         <div className="about-details-container">
           <div className="about-containers">
-
             {/*Experience*/}
             <div className="details-container">
               <img
@@ -25,7 +24,13 @@ function About() {
               />
 
               <h3>Experience</h3>
-              <p>1+ years <br />FullStack Development</p>
+              <p>
+              <ul>
+                <li><strong>Fullstack Development</strong></li>
+                <li>Experience with MERN Stack – 1+ year</li>
+                <li>Experience with Flask – 1+ year</li>
+              </ul>
+              </p>
             </div>
 
             {/*Education*/}
@@ -37,17 +42,27 @@ function About() {
               />
 
               <h3>Education</h3>
-              <p>Btech. Computer Engineering
-                <br/> (Delhi Technological University)
-              </p>
+              <ul>
+                <li>
+                  <strong>B.Tech in Computer Engineering</strong>
+                </li>
+                <li>Delhi Technological University (DTU)</li>
+                <li>Expected Graduation: 2025</li>
+              </ul>
             </div>
           </div>
 
           <div className="text-container">
             <p>
-              Greetings! I am Gaurav Meena, a dedicated student pursuing a B.Tech degree in Computer Engineering at Delhi Technological University. Fueled by a profound passion for technology, I am on a journey to master the intricacies of computer engineering and contribute meaningfully to the ever-evolving tech landscape.
-
-As a relentless learner, I dedicate myself daily to expanding my skill set and staying abreast of technological advancements. With a graduation date set for 2025, I am poised to leverage my knowledge and skills to make a significant impact in the tech industry.
+              Greetings! I am a final-year B.Tech student in Computer
+              Engineering at Delhi Technological University (DTU), with a strong
+              foundation in C++, Python, and full-stack web development (MERN
+              stack). As an Executive in the Education Sector of NSS DTU, I have
+              honed my leadership and communication skills. I am passionate
+              about software development and aspire to work as a Software
+              Engineer at top tech companies like Google, Amazon, Microsoft, and
+              Apple. I am continuously learning and building impactful projects
+              to strengthen my technical and problem-solving abilities.
             </p>
           </div>
         </div>
@@ -56,8 +71,7 @@ As a relentless learner, I dedicate myself daily to expanding my skill set and s
         src="./assets/arrow.png"
         alt="Arrow icon"
         className="icon arrow"
-        
-        onClick={() => window.location.href='./#skills'}
+        onClick={() => (window.location.href = "./#skills")}
       />
     </section>
   );

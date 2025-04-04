@@ -106,7 +106,7 @@ const projects = [
   },
 ];
 
-const Card = ({ project }) => {
+const Card = ({ project, index }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const toggleFlip = (e) => {
@@ -115,53 +115,51 @@ const Card = ({ project }) => {
   };
 
   return (
-    <div className={`flip-card ${isFlipped ? 'flipped' : ''}`}>
+    <div className={`flip-card ${isFlipped ? 'flipped' : ''}`} onClick={toggleFlip}>
       <div className="flip-card-inner">
         {/* Front of the card */}
         <div className="flip-card-front">
-          <div className="flex flex-col h-full min-h-[500px] bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="p-2.5">
+          <div className="flex flex-col h-full min-h-[400px] bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div className="p-0">
               <img 
                 src={project.img} 
                 alt={project.title} 
-                className="w-[90%] h-[250px] mx-auto rounded-lg object-cover" 
+                className="w-full h-[180px] object-cover" 
               />
             </div>
-            <div className="flex flex-col flex-grow p-4">
-              <h4 className="text-xl font-semibold mb-2.5">{project.title}</h4>
-              <div className="flex-grow">
-                <p className="text-secondary mb-2">
-                  {project.description}
-                </p>
-                <div className="flex justify-center">
-                  <button 
-                    className="text-primary hover:text-primary/80 flex items-center gap-1"
-                    onClick={toggleFlip}
-                  >
-                    Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                      <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                    </svg>
-                  </button>
+            <div className="flex flex-col flex-grow p-4 relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-9xl font-bold text-gray-200/80 select-none">
+                  #{index + 1}
                 </div>
               </div>
-              <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                <a 
-                  href={project.sourceCode} 
-                  className="px-3 py-2 text-sm border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Github
-                </a>
-                <a 
-                  href={project.liveProject} 
-                  className="px-3 py-2 text-sm border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Live Site
-                </a>
+              <div className="relative z-10">
+                <h4 className="text-xl font-semibold mb-2.5">{project.title}</h4>
+                <div className="flex-grow">
+                  <p className="text-secondary mb-2">
+                    {project.description}
+                  </p>
+                </div>
+                <div className="flex flex-wrap justify-center gap-3 mt-auto">
+                  <a 
+                    href={project.sourceCode} 
+                    className="px-3 py-2 text-sm border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Github
+                  </a>
+                  <a 
+                    href={project.liveProject} 
+                    className="px-3 py-2 text-sm border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Live Site
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -169,8 +167,8 @@ const Card = ({ project }) => {
 
         {/* Back of the card */}
         <div className="flip-card-back">
-          <div className="w-full h-full flex flex-col justify-between">
-            <div>
+          <div className="w-full h-full flex flex-col justify-between relative">
+            <div className="relative z-10">
               <h4 className="text-xl font-semibold mb-4">{project.title}</h4>
               <p className="text-secondary mb-4">{project.detailedDescription}</p>
               <div className="mb-4">
@@ -184,15 +182,6 @@ const Card = ({ project }) => {
                 </div>
               </div>
             </div>
-            <button 
-              className="text-primary hover:text-primary/80 flex items-center gap-1 justify-center"
-              onClick={toggleFlip}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 rotate-180">
-                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-              </svg>
-              Back
-            </button>
           </div>
         </div>
       </div>
@@ -240,7 +229,7 @@ const Projects = () => {
       >
         {projects.map((project, index) => (
           <SwiperSlide key={index} className="max-w-[300px] min-w-[250px] mx-2.5 my-8">
-            <Card project={project} />
+            <Card project={project} index={index} />
           </SwiperSlide>
         ))}
       </Swiper>
