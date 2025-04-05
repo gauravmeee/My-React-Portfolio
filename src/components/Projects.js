@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"; // npm install swiper
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow } from "swiper/modules";
 import pro1 from './assets/Project-MarkdownEdit.png';
 import pro2 from './assets/Project-AdBlocker.png';
 import pro3 from './assets/Project-CharacterCounter.png';
@@ -15,7 +15,6 @@ import pro9 from './assets/Project-UnseenDiaries.png';
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
 
 
 const Icon = ({ src, alt, className }) => (
@@ -207,11 +206,10 @@ const Projects = () => {
           modifier: 2,
           slideShadows: false,
         }}
-        pagination={{ clickable: true }}
         freeMode={true}
         cssMode={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="w-full max-w-[1200px] mx-auto"
+        modules={[EffectCoverflow]}
+        className="w-full max-w-[1200px] mx-auto px-4"
         breakpoints={{
           1200: {
             slidesPerView: 3,
@@ -228,18 +226,11 @@ const Projects = () => {
         }}
       >
         {projects.map((project, index) => (
-          <SwiperSlide key={index} className="max-w-[300px] min-w-[250px] mx-2.5 my-8">
+          <SwiperSlide key={index} className="max-w-[300px] min-w-[280px] mx-auto my-8">
             <Card project={project} index={index} />
           </SwiperSlide>
         ))}
       </Swiper>
-      <a href="#contact">
-        <img
-          src="./assets/arrow.png"
-          alt="Arrow icon"
-          className="icon arrow"
-        />
-      </a>
     </section>
   );
 };
