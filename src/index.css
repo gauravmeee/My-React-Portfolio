@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CL:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ruthie:wght@400;500;600;700&display=swap');
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Section Styles */
+.section {
+  @apply w-full relative;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  margin-top: 0; /* Remove margin since we're using padding-top in the container */
+  background: linear-gradient(to bottom, #f8f9fa, #f0f4f8);
+}
+
+.section-container {
+  @apply w-full h-full flex flex-col justify-center items-center;
+  padding-top: 4rem; /* Account for fixed header */
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(99, 102, 241, 0.2), transparent);
+}
+
+.section:last-child::after {
+  display: none;
+}
+
+/* Typography Standards */
+.section-subtitle {
+  @apply text-lg text-indigo-600 text-center mb-2 font-medium;
+  letter-spacing: 0.05em;
+}
+
+.section-title {
+  @apply text-4xl font-bold text-center mb-12 text-gray-800;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  border-radius: 3px;
+}
+
+/* Custom Components */
+@layer components {
+  .btn {
+    @apply px-6 py-2 rounded-full font-medium transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 text-white hover:bg-indigo-700;
+  }
+
+  .btn-secondary {
+    @apply bg-purple-600 text-white hover:bg-purple-700;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .details-container {
+    @apply bg-white rounded-lg shadow-lg p-6 mb-6 border border-gray-100;
+    transition: all 0.3s ease;
+  }
+
+  .details-container:hover {
+    @apply shadow-xl;
+    transform: translateY(-2px);
+  }
+
+  .details-container h3 {
+    @apply text-xl font-semibold mb-4 text-gray-800;
+  }
+
+  .details-container p {
+    @apply text-gray-600 mb-4;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+    @apply text-3xl mb-8;
+  }
+  
+  .container {
+    @apply px-4;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #818cf8;
+}
+
+/* Your custom styles below */ 

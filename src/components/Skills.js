@@ -1,92 +1,154 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Icon = ({ src, alt, className }) => (
-  <img src={src} alt={alt} className={className} />
+  <img src={src} alt={alt} className={`w-8 h-8 ${className}`} />
 );
 
-const SkillCard = ({ title, iconSrc, iconAlt, description }) => (
-  <article>
-    <Icon src={iconSrc} alt={iconAlt} className="icon" />
-    <div>
-      <h3>{title}</h3>
-      {description && <p>{description}</p>}
+const SkillCard = ({ title, iconSrc, iconAlt, group, isHighlighted, onHover }) => {
+  return (
+    <div className="p-1">
+      <article 
+        className={`inline-flex items-center gap-2 p-2 bg-white rounded-lg shadow-sm transition-all duration-300 ease-in-out ${
+          isHighlighted ? 'shadow-lg scale-105 bg-gradient-to-r from-indigo-50 to-purple-50 ring-2 ring-indigo-400' : 'hover:shadow-md hover:bg-gray-50'
+        }`}
+        onMouseEnter={() => onHover(group)}
+      >
+        <div className={`p-1.5 rounded-md ${isHighlighted ? 'bg-indigo-100' : 'bg-gray-100'}`}>
+          <Icon src={iconSrc} alt={iconAlt} />
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold whitespace-nowrap">{title}</h3>
+        </div>
+      </article>
     </div>
-  </article>
-);
-
-const SkillSection = ({ title, skills }) => (
-  <div className="details-container">
-    <h2 className="skills-sub-title">{title}</h2>
-    <div className="article-container">
-      {skills.map((skill, index) => (
-        <SkillCard key={index} {...skill} />
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 const Skills = () => {
-  const programmingLanguages = [
-    { title: 'C++', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg', iconAlt: 'C++ icon' },
-    { title: 'C', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg', iconAlt: 'C icon' },
-    { title: 'Python', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg', iconAlt: 'Python icon' },
-    { title: 'JavaScript', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg', iconAlt: 'JavaScript icon' },
-  ];
+  const [activeGroup, setActiveGroup] = useState(null);
+  const skillsRef = useRef(null);
+  const skillsContainerRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
 
-  const frontendDevelopment = [
-    { title: 'HTML', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg', iconAlt: 'HTML icon' },
-    { title: 'CSS', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg', iconAlt: 'CSS icon' },
-    { title: 'ReactJS', iconSrc: 'https://cdn.worldvectorlogo.com/logos/react-2.svg', iconAlt: 'ReactJS icon' },
-    { title: 'NextJS', iconSrc: 'https://cdn.worldvectorlogo.com/logos/nextjs-2.svg', iconAlt: 'NextJS icon' },
-  ];
+  // Add click handler to reset the active group when clicking anywhere except skill boxes
+  useEffect(() => {
+    const handleClick = (event) => {
+      // Check if the click is on a skill box
+      const isSkillBox = event.target.closest('article');
+      
+      // If not clicking on a skill box, reset the state
+      if (!isSkillBox) {
+        setActiveGroup(null);
+      }
+    };
 
-  const backendDevelopment = [
-    { title: 'NodeJS', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg', iconAlt: 'NodeJS icon' },
-    { title: 'ExpressJS', iconSrc: 'https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg', iconAlt: 'ExpressJS icon' },
-    { title: 'Flask', iconSrc: 'https://www.vectorlogo.zone/logos/palletsprojects_flask/palletsprojects_flask-icon~v2.svg', iconAlt: 'Flask icon' },
-  ];
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
 
-  const databases = [
-    { title: 'MongoDB', iconSrc: 'https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg', iconAlt: 'MongoDB icon' },
-    { title: 'MySQL', iconSrc: 'https://www.svgrepo.com/show/354099/mysql.svg', iconAlt: 'MySQL icon' },
-    { title: 'Firebase', iconSrc: 'https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg', iconAlt: 'Firebase icon' },
-    { title: 'Supabase', iconSrc: 'https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg', iconAlt: 'Supabase icon' },
-  ];
+  // Add mouse leave handler with debounce to prevent fluctuation
+  useEffect(() => {
+    const handleMouseLeave = (event) => {
+      // Clear any existing timeout
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
 
-  const cloudAndDevOps = [
-    { title: 'Google Cloud', iconSrc: 'https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg', iconAlt: 'Google Cloud icon' },
-    { title: 'Git', iconSrc: 'https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg', iconAlt: 'Git icon' },
-    { title: 'Postman', iconSrc: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg', iconAlt: 'Postman icon' },
-  ];
+      // Set a timeout to reset the state after a short delay
+      hoverTimeoutRef.current = setTimeout(() => {
+        // Check if the mouse is over a skill box
+        const isSkillBox = document.querySelector('article:hover');
+        
+        // If not hovering over a skill box, reset the state
+        if (!isSkillBox) {
+          setActiveGroup(null);
+        }
+      }, 100); // Small delay to prevent fluctuation
+    };
 
-  const dataScience = [
-    { title: 'NumPy', iconSrc: 'https://www.vectorlogo.zone/logos/numpy/numpy-icon.svg', iconAlt: 'NumPy icon' },
-    { title: 'Pandas', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg', iconAlt: 'Pandas icon' },
-  ];
+    const skillsContainer = skillsContainerRef.current;
+    if (skillsContainer) {
+      skillsContainer.addEventListener('mouseleave', handleMouseLeave);
+      return () => {
+        skillsContainer.removeEventListener('mouseleave', handleMouseLeave);
+        if (hoverTimeoutRef.current) {
+          clearTimeout(hoverTimeoutRef.current);
+        }
+      };
+    }
+  }, []);
 
-  const developmentTools = [
-    { title: 'VSCode', iconSrc: 'https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg', iconAlt: 'VSCode icon' },
-    { title: 'Android', iconSrc: 'https://www.vectorlogo.zone/logos/android/android-official.svg', iconAlt: 'Android icon' },
-  ];
+  const skillGroups = {
+    'Programming Languages': [
+      { title: 'C++', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg', iconAlt: 'C++ icon' },
+      { title: 'C', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg', iconAlt: 'C icon' },
+      { title: 'Python', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg', iconAlt: 'Python icon' },
+      { title: 'JavaScript', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg', iconAlt: 'JavaScript icon' },
+    ],
+    'Frontend Development': [
+      { title: 'HTML', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg', iconAlt: 'HTML icon' },
+      { title: 'CSS', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg', iconAlt: 'CSS icon' },
+      { title: 'ReactJS', iconSrc: 'https://cdn.worldvectorlogo.com/logos/react-2.svg', iconAlt: 'ReactJS icon' },
+      { title: 'NextJS', iconSrc: 'https://cdn.worldvectorlogo.com/logos/nextjs-2.svg', iconAlt: 'NextJS icon' },
+    ],
+    'Backend Development': [
+      { title: 'NodeJS', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg', iconAlt: 'NodeJS icon' },
+      { title: 'ExpressJS', iconSrc: 'https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg', iconAlt: 'ExpressJS icon' },
+      { title: 'Flask', iconSrc: 'https://www.vectorlogo.zone/logos/palletsprojects_flask/palletsprojects_flask-icon~v2.svg', iconAlt: 'Flask icon' },
+    ],
+    'Databases': [
+      { title: 'MongoDB', iconSrc: 'https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg', iconAlt: 'MongoDB icon' },
+      { title: 'MySQL', iconSrc: 'https://www.svgrepo.com/show/354099/mysql.svg', iconAlt: 'MySQL icon' },
+      { title: 'Firebase', iconSrc: 'https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg', iconAlt: 'Firebase icon' },
+      { title: 'Supabase', iconSrc: 'https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg', iconAlt: 'Supabase icon' },
+    ],
+    'Cloud & DevOps': [
+      { title: 'Google Cloud', iconSrc: 'https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg', iconAlt: 'Google Cloud icon' },
+      { title: 'Git', iconSrc: 'https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg', iconAlt: 'Git icon' },
+      { title: 'Postman', iconSrc: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg', iconAlt: 'Postman icon' },
+    ],
+    'Data Science': [
+      { title: 'NumPy', iconSrc: 'https://www.vectorlogo.zone/logos/numpy/numpy-icon.svg', iconAlt: 'NumPy icon' },
+      { title: 'Pandas', iconSrc: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg', iconAlt: 'Pandas icon' },
+    ],
+    'Development Tools': [
+      { title: 'VSCode', iconSrc: 'https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg', iconAlt: 'VSCode icon' },
+      { title: 'Android', iconSrc: 'https://www.vectorlogo.zone/logos/android/android-official.svg', iconAlt: 'Android icon' },
+    ],
+  };
+
+  // Flatten all skills into a single array with group information
+  const allSkills = Object.entries(skillGroups).flatMap(([group, skills]) =>
+    skills.map(skill => ({ ...skill, group }))
+  );
 
   return (
-    <section id="skills">
-      <p className="section__text__p1">Explore My</p>
-      <h1 className="title">Skills</h1>
-      <div className="skills-details-container">
-        <div className="about-containers">
-          <SkillSection title="Programming Languages" skills={programmingLanguages} />
-          <SkillSection title="Frontend Development" skills={frontendDevelopment} />
-          <SkillSection title="Backend Development" skills={backendDevelopment} />
-          <SkillSection title="Databases" skills={databases} />
-          <SkillSection title="Cloud & DevOps" skills={cloudAndDevOps} />
-          <SkillSection title="Data Science" skills={dataScience} />
-          <SkillSection title="Development Tools" skills={developmentTools} />
+    <section id="skills" ref={skillsRef} className="section min-h-[calc(100vh-4rem)] pt-16">
+      <div className="section-container h-full p-0">
+        <p className="section-subtitle">Explore My</p>
+        <h1 className="section-title mb-6">Skills</h1>
+        <div className="container h-[calc(100%-8rem)]">
+          <div ref={skillsContainerRef} className="flex flex-wrap justify-center gap-3 mb-6">
+            {allSkills.map((skill, index) => (
+              <SkillCard
+                key={index}
+                {...skill}
+                isHighlighted={activeGroup === skill.group}
+                onHover={setActiveGroup}
+              />
+            ))}
+          </div>
+          <div className={`text-center transition-all duration-300 ${activeGroup ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+            {activeGroup && (
+              <div className="bg-gradient-to-r from-indigo-100 to-purple-100 py-2 px-6 rounded-full inline-block shadow-sm">
+                <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">{activeGroup}</h2>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      <a href="#projects">
-        <Icon src="./assets/arrow.png" alt="Arrow icon" className="icon arrow" />
-      </a>
     </section>
   );
 };

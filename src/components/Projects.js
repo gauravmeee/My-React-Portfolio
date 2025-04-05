@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react"; // npm install swiper
-import { EffectCoverflow } from "swiper/modules";
 import pro1 from './assets/Project-MarkdownEdit.png';
 import pro2 from './assets/Project-AdBlocker.png';
 import pro3 from './assets/Project-CharacterCounter.png';
@@ -11,14 +9,8 @@ import pro7 from './assets/Project-GkmeenaNotes.png';
 import pro8 from './assets/Project-CodeBank.png';
 import pro9 from './assets/Project-UnseenDiaries.png';
 
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-
-
 const Icon = ({ src, alt, className }) => (
-  <img src={src} alt={alt} className={className} />
+  <img src={src} alt={alt} className={`w-8 h-8 ${className}`} />
 );
 
 const projects = [
@@ -110,54 +102,60 @@ const Card = ({ project, index }) => {
 
   const toggleFlip = (e) => {
     e.preventDefault();
+    e.stopPropagation(); // Prevent event bubbling
     setIsFlipped(!isFlipped);
   };
 
   return (
-    <div className={`flip-card ${isFlipped ? 'flipped' : ''}`} onClick={toggleFlip}>
-      <div className="flip-card-inner">
+    <div 
+      className="[perspective:1000px] w-[280px] h-[380px] cursor-pointer"
+      onClick={toggleFlip}
+    >
+      <div className={`relative w-full h-full transition-transform duration-500 ${isFlipped ? '[transform:rotateY(180deg)]' : ''} [transform-style:preserve-3d]`}>
         {/* Front of the card */}
-        <div className="flip-card-front">
-          <div className="flex flex-col h-full min-h-[400px] bg-white rounded-lg shadow-lg overflow-hidden relative">
-            <div className="p-0">
-              <img 
-                src={project.img} 
-                alt={project.title} 
-                className="w-full h-[180px] object-cover" 
-              />
-            </div>
-            <div className="flex flex-col flex-grow p-4 relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-9xl font-bold text-gray-200/80 select-none">
-                  #{index + 1}
-                </div>
+        <div className="absolute w-full h-full [backface-visibility:hidden]">
+          <div className="h-full bg-white rounded-xl shadow-lg overflow-hidden flex flex-col border border-gray-100 hover:shadow-xl transition-all duration-300">
+            <div className="h-1/2 p-3">
+              <div className="w-full h-full rounded-lg overflow-hidden border border-gray-100">
+                <img 
+                  src={project.img} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover" 
+                />
               </div>
-              <div className="relative z-10">
-                <h4 className="text-xl font-semibold mb-2.5">{project.title}</h4>
-                <div className="flex-grow">
-                  <p className="text-secondary mb-2">
-                    {project.description}
-                  </p>
-                </div>
-                <div className="flex flex-wrap justify-center gap-3 mt-auto">
+            </div>
+            <div className="h-1/2 p-3 relative">
+              <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                <span className="text-6xl font-bold text-indigo-200 select-none">
+                  #{index + 1}
+                </span>
+              </div>
+              <div className="relative z-10 text-center h-full flex flex-col justify-center">
+                <h4 className="text-lg font-semibold mb-2 text-gray-800">{project.title}</h4>
+                <p className="text-gray-600 mb-3 line-clamp-2 text-sm">
+                  {project.description}
+                </p>
+                <div className="flex justify-center gap-2 mt-auto">
                   <a 
                     href={project.sourceCode} 
-                    className="px-3 py-2 text-sm border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300" 
+                    className="px-2.5 py-1 text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-colors duration-300 text-sm" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
                   >
                     Github
                   </a>
-                  <a 
-                    href={project.liveProject} 
-                    className="px-3 py-2 text-sm border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Live Site
-                  </a>
+                  {project.liveProject && (
+                    <a 
+                      href={project.liveProject} 
+                      className="px-2.5 py-1 text-purple-600 border border-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300 text-sm" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Live Site
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -165,16 +163,19 @@ const Card = ({ project, index }) => {
         </div>
 
         {/* Back of the card */}
-        <div className="flip-card-back">
-          <div className="w-full h-full flex flex-col justify-between relative">
-            <div className="relative z-10">
-              <h4 className="text-xl font-semibold mb-4">{project.title}</h4>
-              <p className="text-secondary mb-4">{project.detailedDescription}</p>
-              <div className="mb-4">
-                <h5 className="font-semibold mb-2">Skills Used:</h5>
-                <div className="flex flex-wrap gap-2 justify-center">
+        <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-white rounded-xl shadow-lg p-3 border border-gray-100">
+          <div className="h-full flex flex-col justify-between">
+            <div className="text-center">
+              <h4 className="text-lg font-semibold mb-2 text-gray-800">{project.title}</h4>
+              <p className="text-gray-600 mb-3 text-sm">{project.detailedDescription}</p>
+              <div>
+                <h5 className="font-semibold mb-2 text-sm text-indigo-700">Skills Used:</h5>
+                <div className="flex flex-wrap justify-center gap-1.5">
                   {project.skills.map((skill, index) => (
-                    <span key={index} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                    <span 
+                      key={index} 
+                      className="px-2 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -190,47 +191,23 @@ const Card = ({ project, index }) => {
 
 const Projects = () => {
   return (
-    <section id="projects">
-      <p className="section__text__p1">Browse My</p>
-      <h1 className="title">Projects</h1>
-      <Swiper
-        effect="coverflow"
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={1}
-        initialSlide={Math.floor(projects.length / 2)}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: -10,
-          depth: 10,
-          modifier: 2,
-          slideShadows: false,
-        }}
-        freeMode={true}
-        cssMode={true}
-        modules={[EffectCoverflow]}
-        className="w-full max-w-[1200px] mx-auto px-4"
-        breakpoints={{
-          1200: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          480: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-        }}
-      >
-        {projects.map((project, index) => (
-          <SwiperSlide key={index} className="max-w-[300px] min-w-[280px] mx-auto my-8">
-            <Card project={project} index={index} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <section id="projects" className="section min-h-[calc(100vh-4rem)] pt-16">
+      <div className="section-container h-full p-0">
+        <p className="section-subtitle">Browse My</p>
+        <h1 className="section-title mb-6">Projects</h1>
+        <div className="container h-[calc(100%-8rem)]">
+          <div className="flex overflow-x-auto pb-6 gap-6 snap-x snap-mandatory scrollbar-none">
+            {projects.map((project, index) => (
+              <div key={index} className="snap-center flex-shrink-0">
+                <Card 
+                  project={project} 
+                  index={index} 
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
