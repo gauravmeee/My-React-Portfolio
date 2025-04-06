@@ -25,12 +25,6 @@ function Footer() {
             >
               GitHub
             </a>
-            <a 
-              href="mailto:gaurav28.official@gmail.com" 
-              className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
-            >
-              Email
-            </a>
           </div>
         </div>
       </div>

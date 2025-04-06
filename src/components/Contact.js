@@ -1,6 +1,45 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 function Contact() {
+  const form = useRef();
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init("qD5oPql94oqCD2o4z");
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
+
+    emailjs.sendForm(
+      'gkmeena-portfolio', // your EmailJS service ID
+      'gkmeena-portfolio', // your EmailJS template ID
+      form.current
+    )
+      .then((result) => {
+        setStatus({ 
+          type: 'success', 
+          message: 'Message sent successfully! I will get back to you soon.' 
+        });
+        form.current.reset();
+      })
+      .catch((error) => {
+        setStatus({ 
+          type: 'error', 
+          message: 'Oops! Something went wrong. Please try again later.' 
+        });
+        console.error('EmailJS Error:', error);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
+
   return (
     <section id="contact" className="section min-h-[calc(100vh-4rem)] pt-16">
       <div className="section-container h-full p-0">
@@ -11,10 +50,7 @@ function Contact() {
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-gray-800">Let's talk about everything!</h2>
               <p className="text-gray-600">
-                Don't like forms? Send me an email at{" "}
-                <a href="mailto:gauravmeena2003@gmail.com" className="text-indigo-600 hover:text-indigo-800 hover:underline">
-                  gauravmeena2003@gmail.com
-                </a>
+                Have an idea? Let's build it together! Feel free to reach out using the contact form.
               </p>
               <div className="flex space-x-4">
                 <a
@@ -57,26 +93,33 @@ function Contact() {
                 </a>
               </div>
             </div>
-            <form className="space-y-4 bg-white p-6 rounded-lg shadow-md border border-gray-100">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-md border border-gray-100">
+              {status.message && (
+                <div className={`p-4 rounded-md ${status.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                  {status.message}
+                </div>
+              )}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">
                   Name
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="user_name"
+                  name="user_name"
+                  required
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="user_email" className="block text-sm font-medium text-gray-700">
                   Email
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
+                  id="user_email"
+                  name="user_email"
+                  required
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 />
               </div>
@@ -87,15 +130,17 @@ function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  required
                   rows={4}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 px-4 rounded-md hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300"
+                disabled={isSubmitting}
+                className={`w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 px-4 rounded-md hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>

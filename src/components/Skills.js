@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const Icon = ({ src, alt, className }) => (
-  <img src={src} alt={alt} className={`w-8 h-8 ${className}`} />
+  <img src={src} alt={alt} className={`w-6 h-6 sm:w-8 sm:h-8 ${className}`} />
 );
 
 const SkillCard = ({ title, iconSrc, iconAlt, group, isHighlighted, onHover }) => {
   return (
-    <div className="p-1">
+    <div className="p-0.5 sm:p-1">
       <article 
-        className={`inline-flex items-center gap-2 p-2 bg-white rounded-lg shadow-sm transition-all duration-300 ease-in-out ${
+        className={`inline-flex items-center gap-1 sm:gap-2 p-1.5 sm:p-2 bg-white rounded-lg shadow-sm transition-all duration-300 ease-in-out ${
           isHighlighted ? 'shadow-lg scale-105 bg-gradient-to-r from-indigo-50 to-purple-50 ring-2 ring-indigo-400' : 'hover:shadow-md hover:bg-gray-50'
         }`}
         onMouseEnter={() => onHover(group)}
       >
-        <div className={`p-1.5 rounded-md ${isHighlighted ? 'bg-indigo-100' : 'bg-gray-100'}`}>
+        <div className={`p-1 sm:p-1.5 rounded-md ${isHighlighted ? 'bg-indigo-100' : 'bg-gray-100'}`}>
           <Icon src={iconSrc} alt={iconAlt} />
         </div>
         <div>
-          <h3 className="text-sm font-semibold whitespace-nowrap">{title}</h3>
+          <h3 className="text-xs sm:text-sm font-semibold whitespace-nowrap">{title}</h3>
         </div>
       </article>
     </div>
@@ -127,10 +127,20 @@ const Skills = () => {
   return (
     <section id="skills" ref={skillsRef} className="section min-h-[calc(100vh-4rem)] pt-16">
       <div className="section-container h-full p-0">
-        <p className="section-subtitle">Explore My</p>
-        <h1 className="section-title mb-6">Skills</h1>
+        <div className="text-center transition-all duration-300 mb-2">
+          {activeGroup ? (
+            <div className="bg-gradient-to-r from-indigo-100 to-purple-100 py-1.5 sm:py-2 px-4 sm:px-6 rounded-full inline-block shadow-sm">
+              <h2 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                {activeGroup}
+              </h2>
+            </div>
+          ) : (
+            <p className="section-subtitle">Explore My</p>
+          )}
+        </div>
+        <h1 className="section-title mb-4 sm:mb-6">Skills</h1>
         <div className="container h-[calc(100%-8rem)]">
-          <div ref={skillsContainerRef} className="flex flex-wrap justify-center gap-3 mb-6">
+          <div ref={skillsContainerRef} className="flex flex-wrap justify-center gap-1.5 sm:gap-3">
             {allSkills.map((skill, index) => (
               <SkillCard
                 key={index}
@@ -139,13 +149,6 @@ const Skills = () => {
                 onHover={setActiveGroup}
               />
             ))}
-          </div>
-          <div className={`text-center transition-all duration-300 ${activeGroup ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-            {activeGroup && (
-              <div className="bg-gradient-to-r from-indigo-100 to-purple-100 py-2 px-6 rounded-full inline-block shadow-sm">
-                <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">{activeGroup}</h2>
-              </div>
-            )}
           </div>
         </div>
       </div>

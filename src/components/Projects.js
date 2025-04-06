@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import pro1 from './assets/Project-MarkdownEdit.png';
 import pro2 from './assets/Project-AdBlocker.png';
 import pro3 from './assets/Project-CharacterCounter.png';
@@ -97,30 +97,37 @@ const projects = [
   },
 ];
 
-const Card = ({ project, index }) => {
+const Card = ({ project, index, isActive, onCardClick }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const toggleFlip = (e) => {
     e.preventDefault();
     e.stopPropagation(); // Prevent event bubbling
     setIsFlipped(!isFlipped);
+    onCardClick(index);
   };
 
   return (
     <div 
-      className="[perspective:1000px] w-[280px] h-[380px] cursor-pointer"
+      className={`project-card [perspective:1000px] w-[280px] h-[380px] cursor-pointer transition-all duration-500 ease-in-out outline-none focus:outline-none select-none ${isActive ? 'scale-105' : 'scale-100'}`}
       onClick={toggleFlip}
+      tabIndex={0}
     >
       <div className={`relative w-full h-full transition-transform duration-500 ${isFlipped ? '[transform:rotateY(180deg)]' : ''} [transform-style:preserve-3d]`}>
         {/* Front of the card */}
         <div className="absolute w-full h-full [backface-visibility:hidden]">
-          <div className="h-full bg-white rounded-xl shadow-lg overflow-hidden flex flex-col border border-gray-100 hover:shadow-xl transition-all duration-300">
+          <div className={`h-full bg-white rounded-xl overflow-hidden flex flex-col border transition-all duration-500 ease-in-out ${
+            isActive 
+              ? 'shadow-[0_0_15px_rgba(99,102,241,0.5)] border-indigo-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)]' 
+              : 'shadow-lg border-gray-100 hover:shadow-xl'
+          }`}>
             <div className="h-1/2 p-3">
               <div className="w-full h-full rounded-lg overflow-hidden border border-gray-100">
                 <img 
                   src={project.img} 
                   alt={project.title} 
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover select-none" 
+                  draggable="false"
                 />
               </div>
             </div>
@@ -131,14 +138,14 @@ const Card = ({ project, index }) => {
                 </span>
               </div>
               <div className="relative z-10 text-center h-full flex flex-col justify-center">
-                <h4 className="text-lg font-semibold mb-2 text-gray-800">{project.title}</h4>
-                <p className="text-gray-600 mb-3 line-clamp-2 text-sm">
+                <h4 className="text-lg font-semibold mb-2 text-gray-800 select-none">{project.title}</h4>
+                <p className="text-gray-600 mb-3 line-clamp-2 text-sm select-none">
                   {project.description}
                 </p>
                 <div className="flex justify-center gap-2 mt-auto">
                   <a 
                     href={project.sourceCode} 
-                    className="px-2.5 py-1 text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-colors duration-300 text-sm" 
+                    className="px-2.5 py-1 text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-colors duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
@@ -148,7 +155,7 @@ const Card = ({ project, index }) => {
                   {project.liveProject && (
                     <a 
                       href={project.liveProject} 
-                      className="px-2.5 py-1 text-purple-600 border border-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300 text-sm" 
+                      className="px-2.5 py-1 text-purple-600 border border-purple-600 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
@@ -163,18 +170,22 @@ const Card = ({ project, index }) => {
         </div>
 
         {/* Back of the card */}
-        <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-white rounded-xl shadow-lg p-3 border border-gray-100">
+        <div className={`absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-white rounded-xl p-3 border transition-all duration-500 ease-in-out ${
+          isActive 
+            ? 'shadow-[0_0_15px_rgba(99,102,241,0.5)] border-indigo-300' 
+            : 'shadow-lg border-gray-100'
+        }`}>
           <div className="h-full flex flex-col justify-between">
             <div className="text-center">
-              <h4 className="text-lg font-semibold mb-2 text-gray-800">{project.title}</h4>
-              <p className="text-gray-600 mb-3 text-sm">{project.detailedDescription}</p>
+              <h4 className="text-lg font-semibold mb-2 text-gray-800 select-none">{project.title}</h4>
+              <p className="text-gray-600 mb-3 text-sm select-none">{project.detailedDescription}</p>
               <div>
-                <h5 className="font-semibold mb-2 text-sm text-indigo-700">Skills Used:</h5>
+                <h5 className="font-semibold mb-2 text-sm text-indigo-700 select-none">Skills Used:</h5>
                 <div className="flex flex-wrap justify-center gap-1.5">
                   {project.skills.map((skill, index) => (
                     <span 
                       key={index} 
-                      className="px-2 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm"
+                      className="px-2 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm select-none"
                     >
                       {skill}
                     </span>
@@ -190,18 +201,55 @@ const Card = ({ project, index }) => {
 };
 
 const Projects = () => {
+  const [activeCardIndex, setActiveCardIndex] = useState(null);
+
+  const handleCardClick = (index) => {
+    setActiveCardIndex(index);
+  };
+
+  // Add click handler at document level
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      // Check if the click is on a card or its children
+      const isCardClick = e.target.closest('.project-card');
+      if (!isCardClick) {
+        setActiveCardIndex(null);
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('click', handleClickOutside);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []); // Empty dependency array since we don't need to re-add the listener
+
   return (
     <section id="projects" className="section min-h-[calc(100vh-4rem)] pt-16">
       <div className="section-container h-full p-0">
-        <p className="section-subtitle">Browse My</p>
+        <div className="text-center transition-all duration-300 mb-2">
+          {activeCardIndex !== null ? (
+            <div className="bg-gradient-to-r from-indigo-100 to-purple-100 py-1.5 sm:py-2 px-4 sm:px-6 rounded-full inline-block shadow-sm">
+              <h2 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                {projects[activeCardIndex].title}
+              </h2>
+            </div>
+          ) : (
+            <p className="section-subtitle">Browse My</p>
+          )}
+        </div>
         <h1 className="section-title mb-6">Projects</h1>
-        <div className="container h-[calc(100%-8rem)]">
-          <div className="flex overflow-x-auto pb-6 gap-6 snap-x snap-mandatory scrollbar-none">
+        <div className="container h-[calc(100%-6rem)]">
+          <div className="flex overflow-x-auto overflow-y-visible py-8 px-4 gap-6 snap-x snap-mandatory scrollbar-none">
             {projects.map((project, index) => (
               <div key={index} className="snap-center flex-shrink-0">
                 <Card 
                   project={project} 
                   index={index} 
+                  isActive={activeCardIndex === index}
+                  onCardClick={handleCardClick}
                 />
               </div>
             ))}
