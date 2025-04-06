@@ -79,7 +79,7 @@ function Header() {
                     className="flex items-center px-4 py-2 text-sm text-indigo-600 hover:text-indigo-800 hover:bg-gray-50 transition-colors duration-300"
                   >
                     <img 
-                      src="https://mycodebank.vercel.app/favicon.ico" 
+                      src="https://mycodebank.vercel.app/favicon.png" 
                       alt="CodeBank" 
                       className="w-5 h-5 rounded-sm mr-2"
                     />
@@ -95,7 +95,7 @@ function Header() {
                     className="flex items-center px-4 py-2 text-sm text-purple-600 hover:text-purple-800 hover:bg-gray-50 transition-colors duration-300"
                   >
                     <img 
-                      src="https://my-unseen-stories.vercel.app/favicon.ico" 
+                      src="https://my-unseen-stories.vercel.app/favicon.png" 
                       alt="Unseen Diaries" 
                       className="w-5 h-5 rounded-sm mr-2"
                     />
@@ -176,7 +176,7 @@ function Header() {
                     onClick={handleMenuToggle}
                   >
                     <img 
-                      src="https://mycodebank.vercel.app/favicon.ico" 
+                      src="https://mycodebank.vercel.app/favicon.png" 
                       alt="CodeBank" 
                       className="w-5 h-5 rounded-sm mr-2"
                     />
@@ -195,7 +195,7 @@ function Header() {
                     onClick={handleMenuToggle}
                   >
                     <img 
-                      src="https://my-unseen-stories.vercel.app/favicon.ico" 
+                      src="https://my-unseen-stories.vercel.app/favicon.png" 
                       alt="Unseen Diaries" 
                       className="w-5 h-5 rounded-sm mr-2"
                     />
