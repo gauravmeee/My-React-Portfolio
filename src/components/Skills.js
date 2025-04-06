@@ -9,7 +9,7 @@ const SkillCard = ({ title, iconSrc, iconAlt, group, isHighlighted, onHover }) =
     <div className="p-0.5 sm:p-1">
       <article 
         className={`inline-flex items-center gap-1 sm:gap-2 p-1.5 sm:p-2 bg-white rounded-lg shadow-sm transition-all duration-300 ease-in-out ${
-          isHighlighted ? 'shadow-lg scale-105 bg-gradient-to-r from-indigo-50 to-purple-50 ring-2 ring-indigo-400' : 'hover:shadow-md hover:bg-gray-50'
+          isHighlighted ? 'shadow-lg scale-105 bg-gradient-to-r from-indigo-50 to-purple-50 ring-1 ring-indigo-400' : 'hover:shadow-md hover:bg-gray-50'
         }`}
         onMouseEnter={() => onHover(group)}
       >
@@ -126,6 +126,51 @@ const Skills = () => {
 
   return (
     <section id="skills" ref={skillsRef} className="section min-h-[calc(100vh-4rem)] pt-16">
+      {/* Space Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating Laptop with Space Theme */}
+        <div className="absolute top-24 right-[8%] w-36 h-28 opacity-10">
+          <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white rounded-lg p-2 -rotate-6 shadow-lg animate-float-slow">
+            <div className="relative w-full h-full bg-indigo-900 rounded-md">
+              {/* Screen Content - Code Style */}
+              <div className="absolute inset-2">
+                <div className="h-1 w-12 bg-green-400 rounded mb-1"></div>
+                <div className="h-1 w-16 bg-purple-400 rounded mb-1"></div>
+                <div className="h-1 w-10 bg-yellow-400 rounded"></div>
+              </div>
+              {/* Keyboard */}
+              <div className="absolute bottom-1 inset-x-2 h-4 bg-indigo-800 rounded"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Satellite */}
+        <div className="absolute bottom-32 left-[5%] w-32 h-32 opacity-10">
+          <div className="w-full h-full bg-gradient-to-br from-purple-100 to-white rounded-lg p-2 rotate-12 shadow-lg animate-float">
+            <div className="relative w-full h-full">
+              {/* Satellite Body */}
+              <div className="absolute inset-4 bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 rounded-lg">
+                {/* Solar Panels */}
+                <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-12 h-6 bg-blue-400 rounded"></div>
+                <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-12 h-6 bg-blue-400 rounded"></div>
+                {/* Antenna */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-1 h-8 bg-gray-400"></div>
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-4 h-4 border-2 border-gray-400 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Binary Code Trail */}
+        <div className="absolute top-1/3 right-[15%] opacity-5 transform rotate-45">
+          <div className="space-y-1 text-xs font-mono text-indigo-600">
+            <div>10101</div>
+            <div>01010</div>
+            <div>11001</div>
+          </div>
+        </div>
+      </div>
+
       <div className="section-container h-full p-0">
         <div className="text-center transition-all duration-300 mb-2">
           {activeGroup ? (

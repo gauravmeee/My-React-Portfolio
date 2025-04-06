@@ -42,6 +42,49 @@ function Contact() {
 
   return (
     <section id="contact" className="section min-h-[calc(100vh-4rem)] pt-16">
+      {/* Space Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Space Radio Dish */}
+        <div className="absolute top-20 right-[5%] w-40 h-40 opacity-10">
+          <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white rounded-full p-3 -rotate-12 shadow-lg">
+            <div className="relative w-full h-full">
+              {/* Dish Base */}
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-16 bg-gray-400"></div>
+              {/* Dish */}
+              <div className="absolute top-0 inset-x-0 h-3/4 bg-gradient-to-br from-gray-200 to-white rounded-t-full overflow-hidden">
+                {/* Signal Waves Animation */}
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full border-4 border-indigo-400 rounded-full scale-0 animate-ping"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Space Message */}
+        <div className="absolute bottom-24 left-[8%] w-32 h-24 opacity-10">
+          <div className="w-full h-full bg-gradient-to-br from-purple-100 to-white rounded-lg p-2 rotate-6 shadow-lg animate-float-slow">
+            <div className="relative w-full h-full bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 rounded-md">
+              {/* Message Lines */}
+              <div className="absolute inset-3 space-y-2">
+                <div className="h-1 w-full bg-white/50 rounded"></div>
+                <div className="h-1 w-3/4 bg-white/50 rounded"></div>
+                <div className="h-1 w-1/2 bg-white/50 rounded"></div>
+              </div>
+              {/* Signal Indicator */}
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Signal Beams */}
+        <div className="absolute top-1/3 left-[20%] space-y-8 opacity-5">
+          <div className="w-32 h-0.5 bg-gradient-to-r from-indigo-400 to-transparent rounded-full animate-pulse"></div>
+          <div className="w-24 h-0.5 bg-gradient-to-r from-purple-400 to-transparent rounded-full animate-pulse delay-100"></div>
+          <div className="w-16 h-0.5 bg-gradient-to-r from-indigo-400 to-transparent rounded-full animate-pulse delay-200"></div>
+        </div>
+      </div>
+
       <div className="section-container h-full p-0">
         <p className="section-subtitle">Get In Touch</p>
         <h1 className="section-title mb-6">Contact Me</h1>

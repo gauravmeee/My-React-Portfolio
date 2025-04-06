@@ -18,8 +18,8 @@ const projects = [
     img: pro8, 
     title: "CodeBank", 
     description: "A modern platform for programming resources, contest updates, and tech opportunities with 100+ daily active users.", 
-    sourceCode: "https://github.com/gauravmeee/CodeBank", 
-    liveProject: "https://codebank-platform.vercel.app/",
+    sourceCode: "https://github.com/gauravmeee/gkmeena-codebank-v2", 
+    liveProject: "https://mycodebank.vercel.app/",
     skills: ["Next.js", "Flask", "FastAPI", "React", "Tailwind CSS", "MongoDB"],
     detailedDescription: "A high-performance platform featuring real-time data aggregation, optimized caching, and robust error handling. Achieved 95% accessibility score and maintains 99.9% uptime while serving a growing user base."
   },
@@ -27,8 +27,8 @@ const projects = [
     img: pro9, 
     title: "Unseen Stories", 
     description: "A secure digital sanctuary for personal thoughts, featuring diary uploads and elegant dark theme interface.", 
-    sourceCode: "https://github.com/gauravmeee/unseen-stories", 
-    liveProject: "https://unseen-stories.vercel.app/",
+    sourceCode: "https://github.com/gauravmeee/gkmeena-unseen-stories", 
+    liveProject: "https://my-unseen-stories.vercel.app/",
     skills: ["Next.js", "Supabase", "React", "Tailwind CSS", "Image Processing"],
     detailedDescription: "Digital journaling platform with physical diary integration. Features secure storage, image uploads of physical diary pages, and an intuitive dark-themed interface for seamless writing experience."
   },
@@ -133,7 +133,7 @@ const Card = ({ project, index, isActive, onCardClick }) => {
             </div>
             <div className="h-1/2 p-3 relative">
               <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                <span className="text-6xl font-bold text-indigo-200 select-none">
+                <span className="text-6xl font-bold text-indigo-400 select-none">
                   #{index + 1}
                 </span>
               </div>
@@ -229,6 +229,69 @@ const Projects = () => {
   return (
     <section id="projects" className="section min-h-[calc(100vh-4rem)] pt-16">
       <div className="section-container h-full p-0">
+        {/* Decorative Space Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Large Rocket Sticker */}
+          <div className="absolute top-40 right-[5%] w-32 h-32 opacity-10">
+            <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white rounded-lg p-2 rotate-12 shadow-lg">
+              <div className="relative w-full h-full">
+                {/* Rocket Body */}
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 rounded-lg transform -rotate-45">
+                  <div className="absolute inset-2 bg-gradient-to-br from-cyan-200 to-white rounded-lg"></div>
+                  {/* Windows */}
+                  <div className="absolute top-1/3 left-1/4 w-3 h-3 bg-indigo-900 rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/4 w-3 h-3 bg-indigo-900 rounded-full"></div>
+                  {/* Fins */}
+                  <div className="absolute bottom-0 left-0 w-4 h-6 bg-orange-400 rounded-bl-lg"></div>
+                  <div className="absolute bottom-0 right-0 w-4 h-6 bg-orange-400 rounded-br-lg"></div>
+                  {/* Flame */}
+                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                    <div className="w-4 h-6 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Small Rocket Sticker */}
+          <div className="absolute bottom-20 left-[8%] w-24 h-24 opacity-10">
+            <div className="w-full h-full bg-gradient-to-br from-purple-100 to-white rounded-lg p-2 -rotate-12 shadow-lg">
+              <div className="relative w-full h-full">
+                {/* Rocket Body */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-400 rounded-lg transform rotate-45">
+                  <div className="absolute inset-2 bg-gradient-to-br from-cyan-200 to-white rounded-lg"></div>
+                  {/* Windows */}
+                  <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-indigo-900 rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-indigo-900 rounded-full"></div>
+                  {/* Fins */}
+                  <div className="absolute bottom-0 left-0 w-3 h-4 bg-orange-400 rounded-bl-lg"></div>
+                  <div className="absolute bottom-0 right-0 w-3 h-4 bg-orange-400 rounded-br-lg"></div>
+                  {/* Flame */}
+                  <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+                    <div className="w-3 h-4 bg-gradient-to-b from-orange-500 via-yellow-400 to-transparent rounded-full animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* UFO Sticker */}
+          <div className="absolute top-1/2 left-[15%] w-20 h-20 opacity-10">
+            <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white rounded-full p-2 shadow-lg">
+              <div className="relative w-full h-full">
+                {/* UFO Body */}
+                <div className="absolute inset-x-0 top-1/4 h-1/2 bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 rounded-full">
+                  <div className="absolute inset-1 bg-gradient-to-br from-cyan-200 to-white rounded-full"></div>
+                  {/* Lights */}
+                  <div className="absolute bottom-1 left-1/4 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"></div>
+                  <div className="absolute bottom-1 left-1/2 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse delay-75"></div>
+                  <div className="absolute bottom-1 right-1/4 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse delay-150"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center transition-all duration-300 mb-2">
           {activeCardIndex !== null ? (
             <div className="bg-gradient-to-r from-indigo-100 to-purple-100 py-1.5 sm:py-2 px-4 sm:px-6 rounded-full inline-block shadow-sm">

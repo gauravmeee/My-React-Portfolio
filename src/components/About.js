@@ -3,6 +3,48 @@ import React from "react";
 function About() {
   return (
     <section id="about" className="section min-h-[calc(100vh-4rem)] pt-16">
+      {/* Space Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Astronaut Reading */}
+        <div className="absolute top-20 right-[5%] w-40 h-40 opacity-10">
+          <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-white rounded-2xl p-3 rotate-6 shadow-lg">
+            <div className="relative w-full h-full">
+              {/* Astronaut Body */}
+              <div className="absolute inset-2 bg-gradient-to-br from-gray-200 to-white rounded-full">
+                {/* Helmet */}
+                <div className="absolute inset-x-4 top-2 h-12 bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 rounded-full">
+                  <div className="absolute inset-1 bg-gradient-to-br from-cyan-200 to-white rounded-full"></div>
+                </div>
+                {/* Book */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-10 h-8 bg-indigo-400 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Planet */}
+        <div className="absolute bottom-20 left-[8%] w-32 h-32 opacity-10">
+          <div className="w-full h-full bg-gradient-to-br from-purple-100 to-white rounded-full p-2 shadow-lg animate-float-slow">
+            <div className="relative w-full h-full">
+              {/* Planet Surface */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-indigo-400 to-purple-400 rounded-full">
+                <div className="absolute inset-2 bg-gradient-to-br from-indigo-200 to-white rounded-full"></div>
+                {/* Craters */}
+                <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-indigo-300/50 rounded-full"></div>
+                <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-indigo-300/50 rounded-full"></div>
+                <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-indigo-300/50 rounded-full"></div>
+              </div>
+              {/* Ring */}
+              <div className="absolute inset-[-10%] rounded-full border-4 border-indigo-200/30
+                transform -rotate-12 scale-y-[0.2] animate-spin-slow"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Shooting Star */}
+        <div className="absolute top-1/3 left-[15%] w-24 h-1 bg-gradient-to-r from-yellow-200 via-yellow-100 to-transparent rounded-full transform rotate-45 opacity-20 animate-pulse"></div>
+      </div>
+
       <div className="section-container h-full p-0">
         <p className="section-subtitle">Get To Know More</p>
         <h1 className="section-title mb-6">About Me</h1>
