@@ -8,6 +8,7 @@ import pro6 from './assets/Project-GkmeenaApps.png';
 import pro7 from './assets/Project-GkmeenaNotes.png';
 import pro8 from './assets/Project-CodeBank.png';
 import pro9 from './assets/Project-UnseenDiaries.png';
+import pro10 from './assets/Project-SafeTab.png';
 
 const Icon = ({ src, alt, className }) => (
   <img src={src} alt={alt} className={`w-8 h-8 ${className}`} />
@@ -31,6 +32,15 @@ const projects = [
     liveProject: "https://my-unseen-stories.vercel.app/",
     skills: ["Next.js", "Supabase", "React", "Tailwind CSS", "Image Processing"],
     detailedDescription: "Digital journaling platform with physical diary integration. Features secure storage, image uploads of physical diary pages, and an intuitive dark-themed interface for seamless writing experience."
+  },
+  { 
+    img: pro10, 
+    title: "My Safe Tab", 
+    description: "A Chrome Web lock extension to lock any website with a password, ensuring web privacy on shared devices with complete offline functionality.", 
+    sourceCode: "https://github.com/gauravmeee/mysafetab", 
+    liveProject: "https://github.com/gauravmeee/mysafetab", 
+    skills: ["JavaScript", "Chrome Extension", "SHA-512", "HTML", "CSS", "Formspree"], 
+    detailedDescription: "A browser-based app lock to secure access to specific websites. Offers password-protected overlays, customizable site blocking, email recovery, and tamper alerts. Stores all data locally with SHA-512 hashing, no external tracking, and complete offline functionality." 
   },
   { 
     img: pro7, 
